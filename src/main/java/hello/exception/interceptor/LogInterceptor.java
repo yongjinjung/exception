@@ -14,14 +14,13 @@ public class LogInterceptor implements HandlerInterceptor {
     public static final String LOG_ID = "logId";
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
         String requestURI = request.getRequestURI();
 
         String uuid = UUID.randomUUID().toString();
         request.setAttribute(LOG_ID, uuid);
 
-        log.info("REQUEST  [{}][{}][{}][{}]", uuid, request.getDispatcherType(), requestURI, handler);
+        log.info("REQUEST [{}][{}][{}][{}]", uuid, request.getDispatcherType(), requestURI, handler);
         return true;
     }
 
@@ -39,4 +38,7 @@ public class LogInterceptor implements HandlerInterceptor {
             log.error("afterCompletion error!!", ex);
         }
     }
+
+
+
 }
